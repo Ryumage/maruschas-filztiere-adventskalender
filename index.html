@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filziger Adventskalender – Maruschas Filztiere</title>
+<meta name="description" content="Der Adventskalender von Maruschas Filztiere: jeden Tag ein Türchen mit handgefilzten Tierportraits, Geschichten und Wissenswertem rund ums Nadelfilzen.">
+<meta name="robots" content="noindex">
+<style>
+  @font-face { font-family: "Exo 2"; font-weight: 400; font-display: swap; src: url(fonts/exo-2-latin-400-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Exo 2"; font-weight: 600; font-display: swap; src: url(fonts/exo-2-latin-600-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Exo 2"; font-weight: 700; font-display: swap; src: url(fonts/exo-2-latin-700-normal.woff2) format("woff2"); }
+
+  :root {
+    /* Farben aus dem Layout von marionetten-illusion.de */
+    --braun: #793f00;
+    --braun-hell: #b85f00;
+    --text: #3e3e3e;
+    --panel: rgba(243, 243, 243, .86);
+    --linie: #dadada;
+    /* Filzfarben für die Türchen */
+    --filz-creme: #efe6d6;
+    --filz-hafer: #dccaa9;
+    --filz-karamell: #b98a58;
+    --filz-beere: #8e3b35;
+    --filz-moos: #6f7a4c;
+    --filz-braun: #7a4a22;
+    --radius: 10px;
+    --wolle: url("https://image.jimcdn.com/app/cms/image/transf/none/path/s910906f55e4a6c74/backgroundarea/i8a4f7dca9e6044df/version/1501009592/image.jpg");
+    /* leichte Filzstruktur als Rauschen */
+    --rauschen: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    font-family: "Exo 2", "Open Sans", sans-serif;
+    color: var(--text);
+    background: #d9d2c6 var(--wolle) center / cover fixed;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* eingebettet (iframe): Hintergrund kommt von der Jimdo-Seite */
+  html.eingebettet body { background: transparent; }
+
+  .kalender {
+    position: relative;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px 16px 40px;
+  }
+  html.eingebettet .kalender { padding: 8px 0 16px; }
+
+  .karte {
+    background: var(--panel);
+    border-radius: var(--radius);
+    padding: clamp(18px, 4vw, 36px);
+    box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 12px 32px rgba(62,40,10,.12);
+    backdrop-filter: blur(2px);
+  }
+
+  header { text-align: center; margin-bottom: clamp(18px, 3vw, 28px); }
+  .ueberzeile {
+    margin: 0 0 4px;
+    font-size: 13px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--braun-hell);
+    font-weight: 600;
+  }
+  h1 {
+    margin: 0;
+    font-weight: 400;
+    font-size: clamp(28px, 5.4vw, 44px);
+    line-height: 1.15;
+    color: var(--braun);
+  }
+  .naht {
+    width: min(260px, 60%);
+    margin: 14px auto 12px;
+    border: 0;
+    border-top: 2px dashed rgba(121, 63, 0, .45);
+  }
+  .status { margin: 0; font-size: 16px; }
+  .status strong { color: var(--braun); font-weight: 600; }
+
+  /* ---------- Raster ---------- */
+  .raster {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: clamp(8px, 1.6vw, 14px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  @media (max-width: 720px) { .raster { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 380px) { .raster { grid-template-columns: repeat(3, 1fr); } }
+
+  .feld { aspect-ratio: 1; perspective: 900px; position: relative; }
+
+  /* Rückseite: das, was hinter dem Türchen liegt */
+  .dahinter {
+    position: absolute; inset: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #5a3a1c;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,.45);
+  }
+  .dahinter img, .dahinter svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .dahinter .zahl-klein {
+    position: absolute; left: 6px; top: 4px;
+    font-weight: 700; font-size: 14px; color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,.7);
+  }
+
+  /* Vorderseite: das Filz-Türchen */
+  .tuer {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    border: 0; padding: 0; margin: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font: inherit;
+    color: var(--braun);
+    background-color: var(--filz, var(--filz-creme));
+    background-image: var(--rauschen), radial-gradient(120% 90% at 30% 20%, rgba(255,255,255,.35), rgba(0,0,0,.08));
+    background-blend-mode: soft-light, normal;
+    box-shadow: 0 2px 0 rgba(0,0,0,.12), 0 6px 14px rgba(62,40,10,.18);
+    transform-origin: left center;
+    transition: transform .9s cubic-bezier(.3,.7,.2,1), box-shadow .3s;
+    transform-style: preserve-3d;
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* gestickte Naht */
+  .tuer::before {
+    content: "";
+    position: absolute; inset: 7px;
+    border: 2px dashed currentColor;
+    border-radius: 5px;
+    opacity: .45;
+    pointer-events: none;
+  }
+  .tuer .zahl {
+    position: relative;
+    font-weight: 700;
+    font-size: clamp(22px, 4.4vw, 38px);
+    line-height: 1;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .tuer.hell { color: #fff7ea; }
+  .tuer:hover { box-shadow: 0 2px 0 rgba(0,0,0,.12), 0 10px 22px rgba(62,40,10,.26); }
+  .tuer:focus-visible { outline: 3px solid var(--braun-hell); outline-offset: 3px; }
+
+  .feld.gesperrt .tuer { cursor: default; }
+  .feld.gesperrt .tuer .zahl { opacity: .85; }
+
+  .feld.heute .tuer { animation: puls 2.4s ease-in-out infinite; }
+  .feld.heute .tuer::after {
+    content: "★";
+    position: absolute; right: 9px; top: 6px;
+    font-size: 15px; color: #f0c060;
+    text-shadow: 0 0 6px rgba(255,210,120,.9);
+  }
+  @keyframes puls {
+    0%,100% { box-shadow: 0 2px 0 rgba(0,0,0,.12), 0 6px 14px rgba(62,40,10,.18), 0 0 0 0 rgba(184,95,0,.0); }
+    50%     { box-shadow: 0 2px 0 rgba(0,0,0,.12), 0 6px 14px rgba(62,40,10,.18), 0 0 0 6px rgba(184,95,0,.28); }
+  }
+
+  .feld.offen .tuer {
+    transform: rotateY(-100deg);
+    box-shadow: -6px 6px 12px rgba(0,0,0,.18);
+    pointer-events: none;
+  }
+  .feld.offen .dahinter { cursor: pointer; }
+  .feld.offen .dahinter:hover img { transform: scale(1.05); }
+  .dahinter img { transition: transform .4s ease; }
+
+  .wackeln { animation: wackeln .45s ease; }
+  @keyframes wackeln {
+    0%,100% { transform: rotate(0); }
+    20% { transform: rotate(-4deg); } 40% { transform: rotate(3.5deg); }
+    60% { transform: rotate(-2.5deg); } 80% { transform: rotate(1.5deg); }
+  }
+
+  .fusszeile {
+    margin: clamp(18px, 3vw, 26px) 0 0;
+    text-align: center;
+    font-size: 14px;
+  }
+  .fusszeile a { color: var(--braun); }
+
+  /* ---------- Hinweis (gesperrtes Türchen) ---------- */
+  .hinweis {
+    position: fixed;
+    left: 50%; bottom: 24px;
+    transform: translate(-50%, 20px);
+    background: var(--braun);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 15px;
+    box-shadow: 0 6px 18px rgba(0,0,0,.25);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s, transform .25s;
+    max-width: calc(100% - 32px);
+    text-align: center;
+    z-index: 30;
+  }
+  .hinweis.zeigen { opacity: 1; transform: translate(-50%, 0); }
+  html.eingebettet .hinweis { position: absolute; bottom: auto; }
+
+  /* ---------- Geöffnetes Türchen (Overlay) ---------- */
+  .schleier {
+    position: fixed; inset: 0;
+    background: rgba(40, 24, 8, .55);
+    opacity: 0;
+    transition: opacity .3s;
+    z-index: 40;
+  }
+  .schleier.zeigen { opacity: 1; }
+  html.eingebettet .schleier { position: absolute; }
+
+  .inhalt {
+    position: fixed;
+    left: 50%; top: 50%;
+    width: min(560px, calc(100% - 32px));
+    max-height: calc(100vh - 32px);
+    overflow: auto;
+    transform: translate(-50%, -46%) scale(.96);
+    opacity: 0;
+    transition: opacity .3s, transform .35s cubic-bezier(.3,.7,.2,1);
+    background: #fbf8f3;
+    border-radius: 12px;
+    box-shadow: 0 24px 60px rgba(0,0,0,.35);
+    z-index: 50;
+  }
+  .inhalt.zeigen { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  html.eingebettet .inhalt { position: absolute; top: 0; max-height: none; transform: translate(-50%, 12px) scale(.96); }
+  html.eingebettet .inhalt.zeigen { transform: translate(-50%, 0) scale(1); }
+
+  .inhalt figure { margin: 0; position: relative; }
+  .inhalt figure img, .inhalt figure svg {
+    display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+    border-radius: 12px 12px 0 0; background: #e8e0d2;
+  }
+  .inhalt .datum {
+    position: absolute; left: 16px; bottom: -22px;
+    width: 56px; height: 56px;
+    display: grid; place-items: center;
+    background-color: var(--braun);
+    background-image: var(--rauschen);
+    background-blend-mode: soft-light;
+    color: #fff7ea;
+    border-radius: 8px;
+    font-weight: 700; font-size: 24px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.25);
+  }
+  .inhalt .datum::before {
+    content: ""; position: absolute; inset: 5px;
+    border: 1.5px dashed rgba(255,247,234,.6); border-radius: 5px;
+  }
+  .inhalt .text { padding: 34px clamp(18px, 4vw, 28px) 24px; }
+  .inhalt .art {
+    margin: 0 0 2px;
+    font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--braun-hell); font-weight: 600;
+  }
+  .inhalt h2 { margin: 0 0 10px; font-size: 24px; font-weight: 600; color: var(--braun); line-height: 1.25; }
+  .inhalt p { margin: 0 0 10px; font-size: 16px; }
+  .inhalt .aktionen { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 16px; }
+  .knopf {
+    display: inline-block;
+    padding: 9px 18px;
+    border-radius: 6px;
+    background: var(--braun);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    border: 0;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .knopf:hover { background: #5f3200; }
+  .knopf.leise { background: transparent; color: var(--braun); padding-left: 6px; padding-right: 6px; }
+  .knopf.leise:hover { text-decoration: underline; background: transparent; }
+  .schliessen {
+    position: absolute; right: 10px; top: 10px;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 0;
+    background: rgba(255,255,255,.92);
+    color: var(--braun);
+    font-size: 22px; line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,.2);
+    z-index: 2;
+  }
+
+  /* ---------- Schneeflocken aus Wolle ---------- */
+  .flocken { position: absolute; inset: 0; overflow: hidden; pointer-events: none; border-radius: var(--radius); }
+  .flocken i {
+    position: absolute; top: -12px;
+    width: var(--g, 6px); height: var(--g, 6px);
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fff, rgba(255,255,255,.55) 60%, rgba(255,255,255,0) 72%);
+    animation: fallen var(--d, 14s) linear infinite;
+    animation-delay: var(--v, 0s);
+    opacity: .85;
+  }
+  @keyframes fallen {
+    to { transform: translate(var(--x, 20px), calc(var(--h, 900px) + 24px)); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tuer, .inhalt, .schleier, .hinweis { transition: none; }
+    .feld.heute .tuer, .wackeln, .flocken i { animation: none; }
+    .flocken { display: none; }
+  }
+</style>
+</head>
+<body>
+<main class="kalender" id="kalender">
+  <div class="karte">
+    <div class="flocken" aria-hidden="true"></div>
+    <header>
+      <p class="ueberzeile">Maruschas Filztiere</p>
+      <h1>Filziger Adventskalender</h1>
+      <hr class="naht">
+      <p class="status" id="status" aria-live="polite">&nbsp;</p>
+    </header>
+    <ol class="raster" id="raster" aria-label="24 Türchen"></ol>
+    <p class="fusszeile">Alle Filztiere sind Unikate, handgefilzt von Angelika ·
+      <a href="https://www.marionetten-illusion.de/kontakt/" target="_top">Kontakt</a></p>
+  </div>
+  <div class="hinweis" id="hinweis" role="status"></div>
+</main>
+
+<div class="schleier" id="schleier" hidden></div>
+<section class="inhalt" id="inhalt" role="dialog" aria-modal="true" aria-labelledby="inhalt-titel" hidden></section>
+
+<script src="inhalte.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var WEBSEITE = "https://www.marionetten-illusion.de";
+  var BILD_BASIS = "https://image.jimcdn.com/app/cms/image/transf/";
+  var BILD_PFAD = "/path/s910906f55e4a6c74/image/";
+  var INHALTE = window.ADVENT_INHALTE || [];
+
+  /* Klassische Kalender-Anordnung: Türchen durcheinander */
+  var REIHENFOLGE = [7, 15, 2, 21, 11, 18, 4, 23, 13, 1, 9, 17, 20, 6, 24, 12, 3, 16, 10, 19, 5, 14, 22, 8];
+  var FILZ = ["creme", "hafer", "karamell", "beere", "creme", "moos", "hafer", "braun"];
+  var DUNKEL = { karamell: 1, beere: 1, moos: 1, braun: 1 };
+
+  var eingebettet = window.self !== window.top;
+  if (eingebettet) document.documentElement.classList.add("eingebettet");
+
+  /* ---------- Datum ---------- */
+  var params = new URLSearchParams(location.search);
+  var vorschau = parseInt(params.get("vorschau"), 10); // nur zum Testen: ?vorschau=12
+  var jetzt = new Date();
+  var heute;
+  if (vorschau >= 0 && vorschau <= 31) {
+    heute = new Date(jetzt.getFullYear(), vorschau === 0 ? 10 : 11, vorschau === 0 ? 30 : vorschau);
+  } else {
+    heute = jetzt;
+  }
+  var monat = heute.getMonth(), tag = heute.getDate();
+  // Saisonjahr: Dezember → dieses Jahr, Januar → Vorjahr, sonst das kommende Jahr
+  var saison = monat === 0 ? heute.getFullYear() - 1 : heute.getFullYear();
+  var freiBis; // höchstes Türchen, das geöffnet werden darf
+  if (monat === 11) freiBis = Math.min(tag, 24);
+  else if (monat === 0) freiBis = 24; // Januar: alles noch einmal ansehen
+  else freiBis = 0;
+
+  /* ---------- Speicher (localStorage, mit Fallback) ---------- */
+  var SCHLUESSEL = "maruscha-adventskalender-" + saison + (isNaN(vorschau) ? "" : "-vorschau");
+  var geoeffnet = {};
+  function laden() {
+    try {
+      var roh = localStorage.getItem(SCHLUESSEL);
+      (roh ? JSON.parse(roh) : []).forEach(function (n) { geoeffnet[n] = true; });
+    } catch (e) { /* Speicher blockiert – dann nur für diese Sitzung */ }
+  }
+  function speichern() {
+    try { localStorage.setItem(SCHLUESSEL, JSON.stringify(Object.keys(geoeffnet).map(Number))); } catch (e) {}
+  }
+  laden();
+
+  /* ---------- Hilfen ---------- */
+  function bildUrl(pfad, format) {
+    return BILD_BASIS + format + BILD_PFAD + pfad;
+  }
+  function linkUrl(url) {
+    try { return new URL(url, WEBSEITE).href; } catch (e) { return WEBSEITE; }
+  }
+  function el(tag, klasse, text) {
+    var e = document.createElement(tag);
+    if (klasse) e.className = klasse;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  var HERZ_SVG =
+    '<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gefilztes Herz">' +
+    '<defs><filter id="f" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="2"/>' +
+    '<feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .35 0"/><feComposite in2="SourceGraphic" operator="in"/><feBlend in2="SourceGraphic" mode="soft-light"/></filter></defs>' +
+    '<rect width="400" height="300" fill="#efe6d6"/>' +
+    '<path d="M200 250 C120 195 82 158 82 116 C82 86 106 64 134 64 C162 64 184 82 200 104 C216 82 238 64 266 64 C294 64 318 86 318 116 C318 158 280 195 200 250Z" fill="#8e3b35" filter="url(#f)"/>' +
+    '<path d="M200 232 C132 184 100 152 100 117 C100 96 116 81 135 81 C158 81 178 99 200 128 C222 99 242 81 265 81 C284 81 300 96 300 117 C300 152 268 184 200 232Z" fill="none" stroke="#fff7ea" stroke-width="3" stroke-dasharray="9 7" opacity=".7"/></svg>';
+
+  function tageBisDezember() {
+    var ziel = new Date(heute.getFullYear(), 11, 1);
+    return Math.ceil((ziel - new Date(heute.getFullYear(), heute.getMonth(), heute.getDate())) / 864e5);
+  }
+
+  /* ---------- Status-Zeile ---------- */
+  var status = document.getElementById("status");
+  function statusSetzen() {
+    var anzahl = Object.keys(geoeffnet).length;
+    if (freiBis === 0) {
+      var t = tageBisDezember();
+      status.innerHTML = t === 1
+        ? "Morgen öffnet sich das <strong>erste Türchen</strong>!"
+        : "Noch <strong>" + t + " Tage</strong>, dann öffnet sich das erste Türchen.";
+    } else if (monat === 11 && tag <= 24) {
+      status.innerHTML = geoeffnet[freiBis]
+        ? "Heute schon geöffnet – morgen wartet das nächste Türchen. <strong>" + anzahl + " von 24</strong> entdeckt."
+        : "Heute ist der <strong>" + tag + ". Dezember</strong> – Türchen " + tag + " wartet auf Sie!";
+    } else {
+      status.innerHTML = "Frohe Weihnachten! Sie haben <strong>" + anzahl + " von 24</strong> Türchen entdeckt.";
+    }
+  }
+
+  /* ---------- Raster bauen ---------- */
+  var raster = document.getElementById("raster");
+  var felder = {};
+
+  REIHENFOLGE.forEach(function (nr, i) {
+    var daten = INHALTE[nr - 1] || {};
+    var li = el("li", "feld");
+    li.dataset.nr = nr;
+
+    var dahinter = el("div", "dahinter");
+    dahinter.setAttribute("role", "button");
+    dahinter.tabIndex = -1;
+    dahinter.setAttribute("aria-label", "Türchen " + nr + " ansehen: " + (daten.titel || ""));
+    li.appendChild(dahinter);
+
+    var filz = FILZ[(i * 5 + nr) % FILZ.length];
+    var tuer = el("button", "tuer" + (DUNKEL[filz] ? " hell" : ""));
+    tuer.type = "button";
+    tuer.style.setProperty("--filz", "var(--filz-" + filz + ")");
+    tuer.appendChild(el("span", "zahl", String(nr)));
+    li.appendChild(tuer);
+
+    function fuellen() {
+      if (dahinter.childNodes.length) return;
+      if (daten.bild) {
+        var img = new Image();
+        img.alt = "";
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.src = bildUrl(daten.bild, "dimension=300x300:mode=crop:format=jpg");
+        dahinter.appendChild(img);
+      } else {
+        dahinter.innerHTML = HERZ_SVG.replace('viewBox="0 0 400 300"', 'viewBox="50 0 300 300" preserveAspectRatio="xMidYMid slice"');
+      }
+      dahinter.appendChild(el("span", "zahl-klein", String(nr)));
+    }
+
+    function zustand() {
+      var frei = nr <= freiBis;
+      li.classList.toggle("gesperrt", !frei);
+      li.classList.toggle("heute", frei && nr === freiBis && monat === 11 && tag <= 24 && !geoeffnet[nr]);
+      li.classList.toggle("offen", !!geoeffnet[nr]);
+      tuer.setAttribute("aria-label", "Türchen " + nr + (geoeffnet[nr] ? " (geöffnet)" : frei ? " öffnen" : " – noch verschlossen"));
+      dahinter.tabIndex = geoeffnet[nr] ? 0 : -1;
+      if (geoeffnet[nr]) fuellen();
+    }
+
+    tuer.addEventListener("click", function () {
+      if (nr > freiBis) {
+        tuer.classList.remove("wackeln");
+        void tuer.offsetWidth;
+        tuer.classList.add("wackeln");
+        var rest = freiBis === 0 ? null : nr - freiBis;
+        hinweisZeigen(li, rest === 1
+          ? "Geduld! Türchen " + nr + " öffnet sich morgen."
+          : "Türchen " + nr + " öffnet sich am " + nr + ". Dezember.");
+        return;
+      }
+      fuellen();
+      geoeffnet[nr] = true;
+      speichern();
+      zustand();
+      felderAktualisieren();
+      statusSetzen();
+      var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      setTimeout(function () { oeffnen(nr, li, dahinter); }, still ? 0 : 650);
+    });
+    function ansehen() { oeffnen(nr, li, dahinter); }
+    dahinter.addEventListener("click", ansehen);
+    dahinter.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); ansehen(); }
+    });
+
+    felder[nr] = zustand;
+    raster.appendChild(li);
+  });
+
+  function felderAktualisieren() { Object.keys(felder).forEach(function (k) { felder[k](); }); }
+  felderAktualisieren();
+  statusSetzen();
+
+  /* ---------- Hinweis ---------- */
+  var hinweis = document.getElementById("hinweis");
+  var hinweisTimer;
+  function hinweisZeigen(feld, text) {
+    hinweis.textContent = text;
+    if (eingebettet) {
+      var r = feld.getBoundingClientRect();
+      var k = document.getElementById("kalender").getBoundingClientRect();
+      hinweis.style.top = (r.bottom - k.top + 8) + "px";
+    }
+    hinweis.classList.add("zeigen");
+    clearTimeout(hinweisTimer);
+    hinweisTimer = setTimeout(function () { hinweis.classList.remove("zeigen"); }, 2600);
+  }
+
+  /* ---------- Overlay mit Inhalt ---------- */
+  var schleier = document.getElementById("schleier");
+  var inhalt = document.getElementById("inhalt");
+  var zuletzt = null;
+
+  function oeffnen(nr, feld, fokusZurueck) {
+    var d = INHALTE[nr - 1] || { titel: "Türchen " + nr, text: [] };
+    zuletzt = fokusZurueck || document.activeElement;
+    inhalt.innerHTML = "";
+
+    var zu = el("button", "schliessen", "×");
+    zu.type = "button";
+    zu.setAttribute("aria-label", "Schließen");
+    zu.addEventListener("click", schliessen);
+    inhalt.appendChild(zu);
+
+    var fig = el("figure");
+    if (d.bild) {
+      var img = new Image();
+      img.alt = d.bildAlt || "";
+      img.src = bildUrl(d.bild, "dimension=900x675:mode=crop:format=jpg");
+      fig.appendChild(img);
+    } else {
+      fig.innerHTML = HERZ_SVG;
+    }
+    fig.appendChild(el("span", "datum", String(nr)));
+    inhalt.appendChild(fig);
+
+    var txt = el("div", "text");
+    if (d.art) txt.appendChild(el("p", "art", d.art));
+    var h = el("h2", null, d.titel);
+    h.id = "inhalt-titel";
+    txt.appendChild(h);
+    (d.text || []).forEach(function (absatz) { txt.appendChild(el("p", null, absatz)); });
+
+    var akt = el("div", "aktionen");
+    if (d.link && d.link.url) {
+      var a = el("a", "knopf", d.link.label || "Mehr erfahren");
+      a.href = linkUrl(d.link.url);
+      a.target = "_top";
+      akt.appendChild(a);
+    }
+    var zurueck = el("button", "knopf leise", "Zurück zum Kalender");
+    zurueck.type = "button";
+    zurueck.addEventListener("click", schliessen);
+    akt.appendChild(zurueck);
+    txt.appendChild(akt);
+    inhalt.appendChild(txt);
+
+    schleier.hidden = false;
+    inhalt.hidden = false;
+
+    if (eingebettet) {
+      // Im iframe gibt es kein "Fenster-Mitte": Inhalt neben dem Türchen platzieren
+      var oben = feld.getBoundingClientRect().top + window.scrollY - 40;
+      inhalt.style.top = Math.max(8, oben) + "px";
+      schleier.style.height = Math.max(document.documentElement.scrollHeight, 0) + "px";
+    }
+
+    requestAnimationFrame(function () {
+      schleier.classList.add("zeigen");
+      inhalt.classList.add("zeigen");
+      if (eingebettet) {
+        schleier.style.height = document.documentElement.scrollHeight + "px";
+        try { inhalt.scrollIntoView({ behavior: "smooth", block: "nearest" }); } catch (e) {}
+      }
+      zu.focus({ preventScroll: true });
+    });
+    document.addEventListener("keydown", tasten);
+    hoeheMelden();
+  }
+
+  function schliessen() {
+    schleier.classList.remove("zeigen");
+    inhalt.classList.remove("zeigen");
+    document.removeEventListener("keydown", tasten);
+    setTimeout(function () {
+      schleier.hidden = true;
+      inhalt.hidden = true;
+      inhalt.innerHTML = "";
+      hoeheMelden();
+    }, 300);
+    if (zuletzt && zuletzt.focus) zuletzt.focus({ preventScroll: true });
+  }
+  schleier.addEventListener("click", schliessen);
+
+  function tasten(e) {
+    if (e.key === "Escape") { schliessen(); return; }
+    if (e.key === "Tab") { // Fokus im Dialog halten
+      var f = inhalt.querySelectorAll("button, a[href]");
+      if (!f.length) return;
+      var erstes = f[0], letztes = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === erstes) { e.preventDefault(); letztes.focus(); }
+      else if (!e.shiftKey && document.activeElement === letztes) { e.preventDefault(); erstes.focus(); }
+    }
+  }
+
+  /* ---------- Schneeflocken aus Wolle ---------- */
+  var flocken = document.querySelector(".flocken");
+  for (var s = 0; s < 18; s++) {
+    var f = document.createElement("i");
+    f.style.left = (Math.random() * 100) + "%";
+    f.style.setProperty("--g", (4 + Math.random() * 6).toFixed(1) + "px");
+    f.style.setProperty("--d", (10 + Math.random() * 12).toFixed(1) + "s");
+    f.style.setProperty("--v", (-Math.random() * 20).toFixed(1) + "s");
+    f.style.setProperty("--x", ((Math.random() - .5) * 80).toFixed(0) + "px");
+    flocken.appendChild(f);
+  }
+  function flockenHoehe() { flocken.style.setProperty("--h", flocken.offsetHeight + "px"); }
+  flockenHoehe();
+
+  /* ---------- Höhe an die Jimdo-Seite melden (iframe passt sich an) ---------- */
+  var letzteHoehe = 0;
+  function hoeheMelden() {
+    flockenHoehe();
+    if (!eingebettet) return;
+    var h = Math.ceil(Math.max(
+      document.getElementById("kalender").offsetHeight,
+      inhalt.hidden ? 0 : inhalt.offsetTop + inhalt.offsetHeight + 16
+    ));
+    if (h !== letzteHoehe) {
+      letzteHoehe = h;
+      window.parent.postMessage({ maruschaAdvent: true, hoehe: h }, "*");
+    }
+  }
+  if ("ResizeObserver" in window) new ResizeObserver(hoeheMelden).observe(document.body);
+  window.addEventListener("load", hoeheMelden);
+  window.addEventListener("resize", hoeheMelden);
+  hoeheMelden();
+})();
+</script>
+</body>
+</html>

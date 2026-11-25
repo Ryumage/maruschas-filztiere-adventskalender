@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adventskalender – Demo</title>
+<meta name="robots" content="noindex">
+<style>
+  @font-face { font-family: "Exo 2"; font-weight: 400; src: url(fonts/exo-2-latin-400-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Exo 2"; font-weight: 600; src: url(fonts/exo-2-latin-600-normal.woff2) format("woff2"); }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Exo 2", sans-serif;
+    color: #3e3e3e;
+    background: #d9d2c6 url("https://image.jimcdn.com/app/cms/image/transf/none/path/s910906f55e4a6c74/backgroundarea/i8a4f7dca9e6044df/version/1501009592/image.jpg") center / cover fixed;
+  }
+  .leiste {
+    position: sticky; top: 0; z-index: 5;
+    display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: center;
+    padding: 10px 16px;
+    background: #793f00; color: #fff; font-size: 15px;
+  }
+  .leiste label { display: flex; gap: 8px; align-items: center; }
+  .leiste input[type=range] { width: min(320px, 50vw); accent-color: #f0c060; }
+  .leiste output { font-weight: 600; min-width: 9ch; }
+  .leiste button {
+    font: inherit; padding: 4px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,.6);
+    background: transparent; color: #fff; cursor: pointer;
+  }
+  .seite { max-width: 1000px; margin: 0 auto; padding: 24px 16px 60px; }
+  .kopf { text-align: center; margin: 24px 0 20px; }
+  .kopf h1 { color: #793f00; font-weight: 400; font-size: clamp(26px, 5vw, 42px); margin: 0; }
+  .inhaltsbereich { background: rgba(243,243,243,.8); padding: clamp(12px, 3vw, 30px); }
+  .inhaltsbereich > p { margin: 0 0 16px; }
+</style>
+</head>
+<body>
+  <div class="leiste">
+    <strong>Demo</strong>
+    <label>Simulierter Tag
+      <input type="range" id="tag" min="0" max="26" value="12">
+      <output id="anzeige"></output>
+    </label>
+    <button type="button" id="reset">Geöffnete Türchen zurücksetzen</button>
+  </div>
+
+  <div class="seite">
+    <div class="kopf"><h1>Individuelle Tierportraits aus Wolle</h1></div>
+    <div class="inhaltsbereich">
+      <p>So sieht der Kalender aus, wenn er auf der Jimdo-Seite im „Widget/HTML“-Element sitzt.
+         Mit dem Regler oben lässt sich ein beliebiger Tag simulieren.</p>
+      <iframe id="maruscha-advent" title="Filziger Adventskalender"
+              style="display:block;width:100%;height:820px;border:0;background:transparent"
+              scrolling="no"></iframe>
+    </div>
+  </div>
+
+<script>
+  var regler = document.getElementById("tag");
+  var anzeige = document.getElementById("anzeige");
+  var frame = document.getElementById("maruscha-advent");
+  function text(v) { return v == 0 ? "30. November" : v + ". Dezember"; }
+  function laden() {
+    anzeige.textContent = text(regler.value);
+    frame.src = "index.html?vorschau=" + regler.value;
+  }
+  regler.addEventListener("change", laden);
+  regler.addEventListener("input", function () { anzeige.textContent = text(regler.value); });
+  document.getElementById("reset").addEventListener("click", function () {
+    try {
+      Object.keys(localStorage).forEach(function (k) {
+        if (k.indexOf("maruscha-adventskalender-") === 0) localStorage.removeItem(k);
+      });
+    } catch (e) {}
+    laden();
+  });
+  window.addEventListener("message", function (e) {
+    if (e.origin !== location.origin) return;
+    if (e.data && e.data.maruschaAdvent && e.data.hoehe) frame.style.height = e.data.hoehe + "px";
+  });
+  laden();
+</script>
+</body>
+</html>

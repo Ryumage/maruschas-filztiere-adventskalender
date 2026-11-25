@@ -1,0 +1,20 @@
+<!--
+  Diesen Code in Jimdo einfügen:
+  Seite bearbeiten → Element hinzufügen → „Widget/HTML“ → alles unten einfügen → Speichern.
+
+  Der Kalender läuft auf GitHub Pages und wird per iframe eingebunden.
+  Das kleine Skript passt die Höhe automatisch an, damit kein doppelter Scrollbalken entsteht.
+-->
+<iframe id="maruscha-advent"
+        src="https://ryumage.github.io/maruschas-filztiere-adventskalender/"
+        title="Filziger Adventskalender von Maruschas Filztiere"
+        style="display:block;width:100%;height:820px;border:0;overflow:hidden;background:transparent"
+        scrolling="no" loading="lazy" allowtransparency="true"></iframe>
+<script>
+  window.addEventListener("message", function (e) {
+    if (e.origin !== "https://ryumage.github.io") return;
+    if (e.data && e.data.maruschaAdvent && e.data.hoehe) {
+      document.getElementById("maruscha-advent").style.height = e.data.hoehe + "px";
+    }
+  });
+</script>
