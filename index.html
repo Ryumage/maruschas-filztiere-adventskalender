@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Filziger Adventskalender – Maruschas Filztiere</title>
+<title>Der Weihnachtliche Türchenunsinn – Maruschas Filztiere</title>
 <meta name="description" content="Der Adventskalender von Maruschas Filztiere: jeden Tag ein Türchen mit handgefilzten Tierportraits, Geschichten und Wissenswertem rund ums Nadelfilzen.">
 <meta name="robots" content="noindex">
 <style>
@@ -106,7 +106,7 @@
     background: #5a3a1c;
     box-shadow: inset 0 2px 8px rgba(0,0,0,.45);
   }
-  .dahinter img, .dahinter svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .dahinter img, .dahinter svg { width: 100%; height: 100%; object-fit: contain; display: block; }
   .dahinter .zahl-klein {
     position: absolute; left: 6px; top: 4px;
     font-weight: 700; font-size: 14px; color: #fff;
@@ -242,7 +242,7 @@
 
   .inhalt figure { margin: 0; position: relative; }
   .inhalt figure img, .inhalt figure svg {
-    display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+    display: block; width: 100%; height: auto; object-fit: contain;
     border-radius: 12px 12px 0 0; background: #e8e0d2;
   }
   .inhalt .datum {
@@ -261,6 +261,8 @@
     content: ""; position: absolute; inset: 5px;
     border: 1.5px dashed rgba(255,247,234,.6); border-radius: 5px;
   }
+  .inhalt .text p { white-space: pre-line; }
+  .inhalt .text figure { margin: 16px 0 30px; }
   .inhalt .text { padding: 34px clamp(18px, 4vw, 28px) 24px; }
   .inhalt .art {
     margin: 0 0 2px;
@@ -327,7 +329,8 @@
     <div class="flocken" aria-hidden="true"></div>
     <header>
       <p class="ueberzeile">Maruschas Filztiere</p>
-      <h1>Filziger Adventskalender</h1>
+      <h1>Der Weihnachtliche Türchenunsinn</h1>
+      <p>24 Türchen, keine Schokolade und nicht einmal ein vernünftiger Weihnachtsmann.</p><p>Dafür jede Menge Wolle, allerlei Getier und ein bisschen Unsinn. Wer mich kennt, hat vermutlich auch nichts anderes erwartet. :-)</p>
       <hr class="naht">
       <p class="status" id="status" aria-live="polite">&nbsp;</p>
     </header>
@@ -393,7 +396,9 @@
 
   /* ---------- Hilfen ---------- */
   function bildUrl(pfad, format) {
-    return BILD_BASIS + format + BILD_PFAD + pfad;
+    if (/^(bilder\/|https?:\/\/)/.test(pfad)) return pfad;
+    // proportional auf max. 1600 px verkleinern (kein Beschnitt, kein Hochskalieren)
+    return BILD_BASIS + "dimension=1600x1600:format=jpg" + BILD_PFAD + pfad;
   }
   function linkUrl(url) {
     try { return new URL(url, WEBSEITE).href; } catch (e) { return WEBSEITE; }
@@ -429,9 +434,9 @@
     } else if (monat === 11 && tag <= 24) {
       status.innerHTML = geoeffnet[freiBis]
         ? "Heute schon geöffnet – morgen wartet das nächste Türchen. <strong>" + anzahl + " von 24</strong> entdeckt."
-        : "Heute ist der <strong>" + tag + ". Dezember</strong> – Türchen " + tag + " wartet auf Sie!";
+        : "Heute ist der <strong>" + tag + ". Dezember</strong> – Türchen " + tag + " wartet auf euch!";
     } else {
-      status.innerHTML = "Frohe Weihnachten! Sie haben <strong>" + anzahl + " von 24</strong> Türchen entdeckt.";
+      status.innerHTML = "Frohe Weihnachten! Ihr habt <strong>" + anzahl + " von 24</strong> Türchen entdeckt.";
     }
   }
 
@@ -557,7 +562,7 @@
       fig.innerHTML = HERZ_SVG;
     }
     fig.appendChild(el("span", "datum", String(nr)));
-    inhalt.appendChild(fig);
+    if (!d.bildAmEnde) inhalt.appendChild(fig);
 
     var txt = el("div", "text");
     if (d.art) txt.appendChild(el("p", "art", d.art));
@@ -566,6 +571,7 @@
     txt.appendChild(h);
     (d.text || []).forEach(function (absatz) { txt.appendChild(el("p", null, absatz)); });
 
+    if (d.bildAmEnde) txt.appendChild(fig);
     var akt = el("div", "aktionen");
     if (d.link && d.link.url) {
       var a = el("a", "knopf", d.link.label || "Mehr erfahren");

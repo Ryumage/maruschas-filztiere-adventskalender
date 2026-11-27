@@ -1,277 +1,297 @@
-/*
- * Inhalte der 24 Türchen
- * ----------------------
- * Hier können Texte, Bilder und Links frei angepasst werden.
- *
- *   titel  – Überschrift im geöffneten Türchen
- *   art    – kleines Etikett (z. B. "Aus der Galerie", "Wissen", "Eigentlich …")
- *   text   – Absätze (Array, jeder Eintrag = ein Absatz)
- *   bild   – Pfad des Bildes bei Jimdo (alles nach ".../path/s910906f55e4a6c74/image/")
- *            oder weglassen → dann erscheint ein gefilztes Herz
- *   bildAlt – Bildbeschreibung (Barrierefreiheit)
- *   link   – { url, label } – optionaler Knopf zur passenden Seite
- */
 window.ADVENT_INHALTE = [
-  /* 1 */ {
-    art: "Willkommen",
-    titel: "Schön, dass Sie da sind!",
-    text: [
-      "Ich bin Angelika – gelernte Floristin, viele Jahre mit eigenem Blumenladen. Danach kamen Ton, dann der Bau exklusiver Marionetten, und 2017 bin ich auf das Nadelfilzen gestoßen und habe mich sofort verliebt.",
-      "Bis Heiligabend öffnet sich hier jeden Tag ein Türchen mit einem Stück aus meiner filzigen Welt."
+  {
+    "art": "Weihnachtlicher Türchenunsinn",
+    "titel": "Hund im Schneesturm",
+    "text": [
+      "Eigentlich wollte ich euch einen Hund zeigen, aber das ist mir leider nicht wirklich gelungen.",
+      "Heute gibt es hier nur einen Hund im Schneesturm.",
+      "Vielleicht könnt ihr ja trotzdem etwas erkennen. Zwei Augen haben tatsächlich den Weg aufs Foto gefunden. :-)"
     ],
-    bild: "i7c263768efef6189/version/1695926011/image.jpg",
-    bildAlt: "Angelika, die Künstlerin hinter Maruschas Filztiere",
-    link: { url: "/über-mich/", label: "Mehr über mich" }
+    "bild": "bilder/tuerchen-01.jpg",
+    "bildAlt": "Zwei Hundeaugen zwischen weißer Wolle"
   },
-  /* 2 */ {
-    art: "Aus der Galerie",
-    titel: "Weiß wie der erste Schnee",
-    text: [
-      "Ein weißer Schäferhund, ganz aus Schafwolle. Gerade helles Fell ist eine kleine Kunst: Schatten, Konturen und Ausdruck müssen allein aus feinen Farbnuancen entstehen.",
-      "Jedes meiner Filztiere ist ein Unikat, etwa 15–20 cm groß und nach Fotovorlage gefertigt."
+  {
+    "art": "Weihnachtlicher Türchenunsinn",
+    "titel": "Da ist er ja!",
+    "text": [
+      "Ja, da ist er ja!",
+      "Gestern noch im Schnee, heute im Grünen. Wie im echten Leben! :-)"
     ],
-    bild: "ie4ecfaf988b01e04/version/1775812115/realistisches-filztier-wei%C3%9Fer-sch%C3%A4ferhund-tierportrait-handgefertigt.jpg",
-    bildAlt: "Handgefilzter weißer Schäferhund, liegend im Gras",
-    link: { url: "/gallerie-i/", label: "Zur Galerie I" }
+    "bild": "bilder/tuerchen-02.jpg",
+    "bildAlt": "Weißer Filzhund im Grünen"
   },
-  /* 3 */ {
-    art: "Wissen",
-    titel: "Das Geheimnis der Filznadel",
-    text: [
-      "Beim Nadelfilzen wird Schafwolle mit speziellen Nadeln verdichtet. Diese Nadeln haben feine Widerhaken, die die Fasern bei jedem Einstich miteinander verhaken.",
-      "Stich für Stich – tausendfach – wird aus einem lockeren Wollbausch eine feste Form."
+  {
+    "art": "Weihnachtlicher Türchenunsinn",
+    "titel": "Die Kunst des Nadelfilzens",
+    "text": [
+      "Da sieht man ihn schon, und er sieht mich.",
+      "Ein kleines Kunstwerk aus Wolle entsteht.",
+      "Die eigentliche Kunst beim Nadelfilzen besteht allerdings darin, sich nicht in den Finger zu stechen. :-)"
     ],
-    bild: "iad65c1694d96661a/version/1775825978/handgefilzte-wolle-beim-nadelfilzen-detailaufnahme-filztechnik-mit-filznadel.jpg",
-    bildAlt: "Hände beim Nadelfilzen an einem schwarz-weißen Hundekopf",
-    link: { url: "/wissenswertes-über-das-nadelfilzen/", label: "Wissenswertes über das Nadelfilzen" }
+    "bild": "iad65c1694d96661a/version/1775825978/handgefilzte-wolle-beim-nadelfilzen-detailaufnahme-filztechnik-mit-filznadel.jpg",
+    "bildAlt": "Hände beim Nadelfilzen an einem schwarz-weißen Hundekopf"
   },
-  /* 4 */ {
-    art: "Eigentlich …",
-    titel: "Eigentlich wollte ich nur einen Hund haben",
-    text: [
-      "Einen schwarz-weißen. Sonst nichts. Und nicht größer als 40 Zentimeter. Wie das ausgegangen ist?",
-      "In meinem Blog „Eigentlich …“ erzähle ich von meinen Tieren, meiner Arbeit und all den Dingen, die eigentlich ganz anders geplant waren."
+  {
+    "art": "Weihnachtlicher Türchenunsinn",
+    "titel": "Eigentlich wollte ich nur einen Hund haben",
+    "text": [
+      "Eigentlich wollte ich nur einen Hund haben.",
+      "Schwarz-weiß sollte er sein und nicht größer als 40 Zentimeter. Ich hatte da ganz genaue Vorstellungen.",
+      "Nun ja, der Hund offensichtlich auch. Nur waren es nicht dieselben. :-)"
     ],
-    bild: "ia1d0174c72ae605a/version/1790450194/eigentlich-wollte-ich-nur-einen-hund-haben.jpg",
-    bildAlt: "Schwarz-weißer Hund mit herausgestreckter Zunge im Garten",
-    link: { url: "/2026/09/26/eigentlich-wollte-ich-nur-einen-hund/", label: "Geschichte lesen" }
+    "bild": "ia1d0174c72ae605a/version/1790450194/eigentlich-wollte-ich-nur-einen-hund-haben.jpg",
+    "bildAlt": "Schwarz-weißer Hund mit herausgestreckter Zunge im Garten",
+    "link": {
+      "url": "/2026/09/26/eigentlich-wollte-ich-nur-einen-hund/",
+      "label": "Und was ist daraus geworden?"
+    }
   },
-  /* 5 */ {
-    art: "Aus der Galerie",
-    titel: "Wer hat die Nüsse versteckt?",
-    text: [
-      "Passend zur Nuss-Saison: ein kleiner Hamster mit seinem Wintervorrat.",
-      "Nicht nur Hunde und Katzen – ich filze jedes Tier, das Ihnen am Herzen liegt."
+  {
+    "art": "Weihnachtlicher Türchenunsinn",
+    "titel": "Hamsterkäufe",
+    "text": [
+      "Eigentlich wollte ich noch schnell ein paar Plätzchen backen. Die Haselnüsse hatte ich ja schon besorgt.",
+      "Meine Haselnussplätzchen",
+      "- 200 g Mehl\n- 150 g Butter\n- 100 g gemahlene Haselnüsse\n- 80 g Zucker\n- 1 Päckchen Vanillezucker\n- 1 Eigelb",
+      "Alles zu einem Teig verkneten und 30 Minuten kalt stellen. Kleine Kugeln formen, etwas flach drücken und bei 175 °C Ober-/Unterhitze etwa 12–15 Minuten backen.",
+      "So war zumindest der Plan.",
+      "Denn dann kam der Hamster …",
+      "Und meine Nüsse sind alle weg.",
+      "Das war's dann wohl mit meinen Nussplätzchen. :-)"
     ],
-    bild: "i21d3640a7fcf0a5c/version/1775819836/handgefilztes-hamsterportrait-mit-n%C3%BCssen.jpg",
-    bildAlt: "Handgefilzter Hamster zwischen Haselnüssen",
-    link: { url: "/galerie-ii/", label: "Zur Galerie II" }
+    "bild": "i21d3640a7fcf0a5c/version/1775819836/handgefilztes-hamsterportrait-mit-n%C3%BCssen.jpg",
+    "bildAlt": "Handgefilzter Hamster zwischen Haselnüssen",
+    "bildAmEnde": true
   },
-  /* 6 */ {
-    art: "Nikolaus",
-    titel: "Bunte Hunde für den Stiefel",
-    text: [
-      "Neben der Wolle arbeite ich auch mit Ton: Meine „Bunten Hunde“ werden aus hochwertigem Ton modelliert und anschließend mit Acrylfarben kunstvoll bemalt.",
-      "Jedes Stück ist ein Unikat und wird in dieser Form kein zweites Mal gefertigt."
+  {
+    "art": "Weihnachtlicher Türchenunsinn",
+    "titel": "Was steckt denn da im Stiefel?",
+    "text": [
+      "Eigentlich hatte ich gestern Abend meinen Stiefel vor die Tür gestellt.",
+      "Ein bisschen Schokolade, ein paar Mandarinen und vielleicht ein paar Nüsse wären schön gewesen.",
+      "Und was bringt mir der Nikolaus?",
+      "Einen kunterbunten Dackel!",
+      "Die Nüsse hat vermutlich immer noch der Hamster. :-)"
     ],
-    bild: "i4b17b7b2f502132d/version/1739221902/bunter-hund.jpg",
-    bildAlt: "Bunt bemalter Keramik-Dackel",
-    link: { url: "/bunte-hunde-keramik/", label: "Bunte Hunde / Keramik" }
+    "bild": "bilder/tuerchen-06.jpg",
+    "bildAlt": "Kunterbunter Keramikdackel"
   },
-  /* 7 */ {
-    art: "Wissen",
-    titel: "Von grob zu fein",
-    text: [
-      "Gearbeitet wird von außen nach innen: Mit gröberen Nadeln baue ich zuerst die Grundform auf.",
-      "Für filigrane Details und glatte Oberflächen kommen dann immer feinere Nadeln zum Einsatz – so lassen sich Ausdruck, Struktur und Konturen präzise herausarbeiten."
+  {
+    "art": "Weihnachtlicher Türchenunsinn",
+    "titel": "Geht das auch etwas liebevoller?",
+    "text": [
+      "Also wirklich, musst du mich so schroff am Hals packen?",
+      "Erst stichst du mich tausendmal mit einer Nadel und dann hältst du mich auch noch so fest.",
+      "Ich hätte mir mein Leben als Filzhund irgendwie gemütlicher vorgestellt. :-)"
     ],
-    bild: "ife2b67739a37a776/version/1775826191/filznadeln-mit-widerhaken-detailaufnahme-werkzeug-f%C3%BCr-nadelfilzen.jpg",
-    bildAlt: "Weißer, flauschiger Filzhund in der Hand gehalten",
-    link: { url: "/wissenswertes-über-das-nadelfilzen/", label: "Mehr zur Technik" }
+    "bild": "ife2b67739a37a776/version/1775826191/filznadeln-mit-widerhaken-detailaufnahme-werkzeug-f%C3%BCr-nadelfilzen.jpg",
+    "bildAlt": "Weißer, flauschiger Filzhund in der Hand gehalten"
   },
-  /* 8 */ {
-    art: "Aus der Galerie",
-    titel: "Schneeweißes Kaninchen",
-    text: [
-      "Lange Ohren, weiches Fell, wacher Blick – ein Kaninchen aus reiner Schurwolle.",
-      "Mit viel Geduld und Liebe zum Detail entsteht so Schritt für Schritt ein realistisches Abbild."
+  {
+    "art": "Weihnachtlicher Türchenunsinn",
+    "titel": "Falsche Jahreszeit",
+    "text": [
+      "Eigentlich sollte hier heute ein Rentier sitzen.",
+      "Jetzt ist es ein Kaninchen geworden.",
+      "Ich hoffe, der Weihnachtsmann ist da ein bisschen flexibel. :-)"
     ],
-    bild: "i85ce6f60e3de35c7/version/1775812612/handgefilztes-kaninchen-realistisch-aus-wolle-tierportrait-handgefertigt.jpg",
-    bildAlt: "Handgefilztes weißes Kaninchen im Gras",
-    link: { url: "/gallerie-i/", label: "Zur Galerie I" }
+    "bild": "i85ce6f60e3de35c7/version/1775812612/handgefilztes-kaninchen-realistisch-aus-wolle-tierportrait-handgefertigt.jpg",
+    "bildAlt": "Handgefilztes weißes Kaninchen im Gras"
   },
-  /* 9 */ {
-    art: "Eigentlich …",
-    titel: "Eigentlich war da nur ein Kopf mit großen Ohren",
-    text: [
-      "Ein schwarzer Kopf mit zwei ziemlich großen Ohren – viel mehr Hund war auf dem Foto nicht zu erkennen. Wir fanden ihn großartig. Ein kleiner schwarzer Schlumpf eben.",
-      "Der Schlumpf hieß Peppino. Den Namen haben nicht wir verbrochen. :-)"
+  {
+    "art": "Weihnachtlicher Türchenunsinn",
+    "titel": "Mein Kopfohrhund",
+    "text": [
+      "Mein Kopfohrhund.",
+      "Eigentlich ist da nicht viel. Ein Kopf, zwei Ohren und sonst nichts.",
+      "Aber was in diesem kleinen Kopf alles steckt!",
+      "Jede Menge Unsinn, ein unerschöpflicher Einfallsreichtum, ein ganz großes Herz und eine gehörige Portion Charme.",
+      "Er schafft es sogar, mich zum Lachen zu bringen, wenn mir eigentlich gar nicht danach ist.",
+      "Und das Schönste daran ist, dass er sich dafür nicht einmal besonders anstrengen muss. Er ist einfach Peppino. :-)"
     ],
-    bild: "i0fc642662df8d5c8/version/1791020379/eigentlich-war-da-nur-ein-kopf-mit-gro%C3%9Fen-ohren.jpg",
-    bildAlt: "Junger schwarzer Hund mit großen Ohren vor einer Holztür",
-    link: { url: "/2026/10/03/eigentlich-war-da-nur-ein-kopf-mit-gro%C3%9Fen-ohren/", label: "Peppinos Geschichte" }
+    "bild": "i0fc642662df8d5c8/version/1791020379/eigentlich-war-da-nur-ein-kopf-mit-gro%C3%9Fen-ohren.jpg",
+    "bildAlt": "Junger schwarzer Hund mit großen Ohren vor einer Holztür",
+    "link": {
+      "url": "/2026/10/03/eigentlich-war-da-nur-ein-kopf-mit-gro%C3%9Fen-ohren/",
+      "label": "Peppinos Geschichte"
+    }
   },
-  /* 10 */ {
-    art: "So entsteht Ihr Filztier",
-    titel: "Alles beginnt mit Fotos",
-    text: [
-      "Ein Filztier beginnt bei mir nicht mit der ersten Nadel, sondern mit Fotos. Am besten aus verschiedenen Perspektiven – von vorne, von der Seite und von hinten.",
-      "So kann ich Ausdruck, Körperform und Fellzeichnung möglichst genau umsetzen. Original und Filz-Zwilling sehen Sie hier nebeneinander."
+  {
+    "art": "Weihnachtlicher Türchenunsinn",
+    "titel": "Die Hund gewordene Schneeflocke",
+    "text": [
+      "Eigentlich wollte ich ganz gewöhnlich vom Himmel fallen, wie sich das für eine Schneeflocke gehört.",
+      "Aber irgendwie bin ich bei einer Filzerin gelandet.",
+      "Jetzt habe ich vier Beine, einen Schwanz und eine Frisur, über die wir besser nicht reden.",
+      "Na ja, wenigstens muss ich mir keine Gedanken mehr über Tauwetter machen.",
+      "Allerdings habe ich langsam den Verdacht, dass ich hier in einer Anstalt für verhaltensauffällige Filztiere gelandet bin. :-)"
     ],
-    bild: "i814b54a63f7f5e40/version/1775812115/realistisches-hundeportrait-aus-wolle-handgefilzt-nach-vorlage.jpg",
-    bildAlt: "Ein echter Hund im Schnee neben seinem handgefilzten Ebenbild",
-    link: { url: "/", label: "So läuft eine Anfrage ab" }
+    "bild": "bilder/tuerchen-10.jpg",
+    "bildAlt": "Weißer zerzauster Filzhund auf einem Holzbalken"
   },
-  /* 11 */ {
-    art: "Aus der Galerie",
-    titel: "Auch Pferde dürfen",
-    text: [
-      "Ob Hundeportrait, Katzenportrait oder Pferdeportrait – jedes Filztier wird von Hand gearbeitet und orientiert sich am Charakter und Ausdruck Ihres Lieblings.",
-      "So entsteht kein Produkt von der Stange, sondern ein persönliches Erinnerungsstück."
+  {
+    "art": "Weihnachtlicher Türchenunsinn",
+    "titel": "Anton Meise hat den Winter unterschätzt",
+    "text": [
+      "Schaut mal, was ich beim Holzholen draußen entdeckt habe.",
+      "Da sitzt er, Anton Meise, mitten im Schnee. Nicht einmal eine Hose hat er sich angezogen.",
+      "Ganz schön gebeutelt sieht er aus. Da hat er sich wohl ein bisschen überschätzt.",
+      "Ich glaube, ich werde den armen Kerl auf meiner Fensterbank wieder auftauen. :-)"
     ],
-    bild: "idd4ccc469d3b66b0/version/1775826813/handgefilztes-pferdeportrait-aus-wolle-detailaufnahme-realistisches-filztier.jpg",
-    bildAlt: "Handgefilztes Pferd zwischen grünen Pflanzen",
-    link: { url: "/wissenswertes-über-das-nadelfilzen/", label: "Mehr Filztiere ansehen" }
+    "bild": "bilder/tuerchen-11.jpg",
+    "bildAlt": "Anton Meise auf verschneitem Holz"
   },
-  /* 12 */ {
-    art: "Werkstatt-Einblick",
-    titel: "Braun ist nicht gleich Braun",
-    text: [
-      "Bevor gefilzt wird, suche und mische ich die passenden Wollfarben. Gerade bei natürlichen Fellfarben reicht selten einfach nur „braun“, „grau“ oder „schwarz“.",
-      "Oft entstehen die richtigen Farbtöne erst durch das Zusammenstellen verschiedener Wollfarben."
+  {
+    "art": "Weihnachtlicher Türchenunsinn",
+    "titel": "Die Weihnachtsprobe",
+    "text": [
+      "Wenn ich einfach mal nicht da bin, dann beschließen meine Hunde anscheinend, schon für die Weihnachtsaufführung zu proben.",
+      "Der eine tanzt schon mal im Handstand und der andere versucht verzweifelt, das zu sehen.",
+      "Aber warum eigentlich verzweifelt? Vielleicht ist er ja ganz froh, dass er noch gar keine Augen hat. :-)"
     ],
-    bild: "i40401bd1087cfb42/version/1775820885/handgefilztes-spaniel-hundeportrait-stehend-im-wasser-aus-wolle.jpg",
-    bildAlt: "Handgefilzter rotbrauner Spaniel, der sich im Wasser spiegelt",
-    link: { url: "/preisliste/", label: "Vom Foto zum Filztier" }
+    "bild": "bilder/tuerchen-12.jpg",
+    "bildAlt": "Unfertige Filzhunde bei der Weihnachtsprobe"
   },
-  /* 13 */ {
-    art: "Eigentlich …",
-    titel: "Eigentlich wollte ich anfangen",
-    text: [
-      "Ein neuer Auftrag wartet. Was brauche ich? Draht. Eine kleine Zange. Meine Pfeifenputzer. Ein Foto vom Hund. Alles da.",
-      "Die Sonne scheint, im Hintergrund läuft Musik – eigentlich der perfekte Moment, um anzufangen. Eigentlich."
+  {
+    "art": "Dritter Advent",
+    "titel": "Die Bademaus",
+    "text": [
+      "Zum dritten Advent mal schnell rausgeputzt,\ndoch leider hat es nichts genutzt.",
+      "Die kleine Bademaus hat sich offensichtlich hervorragend auf ihr Bad vorbereitet.",
+      "Nur hat sich der Teich nicht an die Abmachung gehalten.",
+      "Im Winter hätte man damit eigentlich gar nicht rechnen können. :-)",
+      "Einen schönen dritten Advent wünsche ich euch!"
     ],
-    bild: "i2043552a69ac2fed/version/1791835564/eigentlich-wollte-ich-anfangen.jpg",
-    bildAlt: "Arbeitstisch mit Wolle und Filzfiguren im Garten",
-    link: { url: "/2026/10/12/eigentlich-wollte-ich-anfangen/", label: "Weiterlesen" }
+    "bild": "bilder/tuerchen-13.jpg",
+    "bildAlt": "Gefilzte Bademaus mit Badebürste und Handtuch vor dem gefrorenen Teich"
   },
-  /* 14 */ {
-    art: "Aus der Galerie",
-    titel: "Dackel im Schnee",
-    text: [
-      "Kurze Beine, große Persönlichkeit – und nicht ganz einverstanden mit dem Wetter.",
-      "Jedes Tier ist einzigartig, und genau so entsteht auch jedes meiner Filztiere als Einzelstück."
+  {
+    "art": "Weihnachtlicher Türchenunsinn",
+    "titel": "Der Schneezwerg",
+    "text": [
+      "Ja, ein Dackel. Kurze Beine und ganz viel Eigensinn im Kopf.",
+      "Eigentlich wollte ich heute einen Schneemann bauen, aber bei dieser Beinlänge wäre das wohl eher ein Schneezwerg geworden. :-)"
     ],
-    bild: "i6806d49172c57b1d/version/1775819835/handgefilztes-dackel-hundeportrait-liegend-aus-wolle-realistisch.jpg",
-    bildAlt: "Handgefilzter schwarz-brauner Dackel im Schnee",
-    link: { url: "/galerie-ii/", label: "Zur Galerie II" }
+    "bild": "i6806d49172c57b1d/version/1775819835/handgefilztes-dackel-hundeportrait-liegend-aus-wolle-realistisch.jpg",
+    "bildAlt": "Handgefilzter schwarz-brauner Dackel im Schnee"
   },
-  /* 15 */ {
-    art: "Marionetten-Illusion",
-    titel: "Haben Sie einen „Patienten“?",
-    text: [
-      "Bevor die Wolle kam, waren es Marionetten – und die liegen mir bis heute am Herzen. Im Laufe der Zeit können Farben verblassen, Fäden spröde werden oder Teile brechen.",
-      "Ich repariere und restauriere Marionetten aller Art, bis hin zur Generalrestaurierung. Ein Foto der beschädigten Stelle per E-Mail genügt für ein unverbindliches Angebot."
+  {
+    "art": "Weihnachtlicher Türchenunsinn",
+    "titel": "Weihnachten kommt immer so plötzlich",
+    "text": [
+      "Eigentlich wollte ich dieses Jahr meine Weihnachtsbesorgungen etwas früher erledigen.",
+      "Ich bin auch schon seit Oktober unterwegs.",
+      "Wenn alles gut geht, bin ich bis Ostern wieder zu Hause. :-)"
     ],
-    bild: "icbd8ca038592ba25/version/1487707593/marionetten.jpg",
-    bildAlt: "Marionettenköpfe und -hände in der Werkstatt",
-    link: { url: "/marionetten-reparaturen/", label: "Marionetten-Reparaturen" }
+    "bild": "bilder/tuerchen-15.jpg",
+    "bildAlt": "Schnecke mit bemaltem Schneckenhaus zwischen Herbstblättern"
   },
-  /* 16 */ {
-    art: "Aus der Galerie",
-    titel: "Mal ganz exotisch",
-    text: [
-      "Wer sagt, dass Filztiere immer flauschig sein müssen? Auch eine Echse lässt sich aus Wolle formen – samt Schuppenkamm und grüner Farbenpracht.",
-      "Haben Sie ein ungewöhnliches Haustier? Fragen Sie mich einfach."
+  {
+    "art": "Weihnachtlicher Türchenunsinn",
+    "titel": "Ein windschnittiger Dackel",
+    "text": [
+      "Ich habe zwar Beine, wenn auch viel zu kurz.",
+      "Weihnachten ist ja noch ein bisschen hin, aber wenn ich meinen Bauch ein bisschen einziehe, bin ich vielleicht doch schneller, als die Schnecke gedacht hat.",
+      "Als würde der eingezogene Bauch den Dackel windschnittiger machen. :-)"
     ],
-    bild: "i1d15f2404f861710/version/1775819975/handgefilztes-reptil-aus-wolle-detailgetreues-filztier-realistisch.jpg",
-    bildAlt: "Handgefilzte grüne Echse auf einem Stein",
-    link: { url: "/kontakt/", label: "Unverbindlich anfragen" }
+    "bild": "bilder/tuerchen-16.jpeg",
+    "bildAlt": "Handgefilzter Rauhaardackel auf einem Stein im Garten"
   },
-  /* 17 */ {
-    art: "Eigentlich …",
-    titel: "Eigentlich filze ich nur das, was ich sehe",
-    text: [
-      "Ein schwarzer Hund. Eine Französische Bulldogge. Eigentlich kein Problem. Eigentlich.",
-      "Denn Schwarz schluckt so einiges – und auf Fotos offenbar besonders gerne die Dinge, die ich zum Filzen brauche."
+  {
+    "art": "Weihnachtlicher Türchenunsinn",
+    "titel": "Das Weihnachtskonzert",
+    "text": [
+      "Hin und wieder lebt für kurze Zeit auch mal eine ganz andere Katze bei mir im Haus.",
+      "Diese hier sieht gerade so aus, als würde sie darauf warten, endlich ihr Weihnachtslied singen zu dürfen.",
+      "Siamesen sind ja bekanntlich sehr gesprächig, und hier hat sie auch ihre ganz eigene Bühne. :-)"
     ],
-    bild: "ibf23cd005b95ba83/version/1792310641/eigentlich-filze-ich-nur-das-was-ich-sehe.png",
-    bildAlt: "Fotos einer schwarzen Französischen Bulldogge auf dem Arbeitstisch",
-    link: { url: "/2026/10/18/eigentlich-filze-ich-nur-das-was-ich-sehe/", label: "Weiterlesen" }
+    "bild": "bilder/tuerchen-17.jpg",
+    "bildAlt": "Handgefilzte Siamkatze auf einem Holzpodest"
   },
-  /* 18 */ {
-    art: "Werkstatt-Einblick",
-    titel: "Das Gesicht kommt zum Schluss",
-    text: [
-      "Augen, Gesicht und Ausdruck entscheiden darüber, ob aus Wolle tatsächlich dieses eine Tier wird. Deshalb gehören die feinen Details zu den letzten Arbeitsschritten.",
-      "Und manchmal kommt dann dieser eine Moment, in dem ich denke: Ja. Jetzt bist du da."
+  {
+    "art": "Weihnachtlicher Türchenunsinn",
+    "titel": "Eine verblüffende Ähnlichkeit",
+    "text": [
+      "Man kann sich auch mal tief in die Augen schauen und dabei feststellen, dass man sich doch irgendwie unheimlich ähnlich ist. :-)"
     ],
-    bild: "id98444e6a73e8ae8/version/1775822415/handgefilztes-hundeportrait-mexikanischer-nackthund-aus-wolle-realistisch.jpg",
-    bildAlt: "Handgefilzter Nackthund mit weißem Haarschopf",
-    link: { url: "/preisliste/", label: "Mehr aus der Werkstatt" }
+    "bild": "bilder/tuerchen-18.jpg",
+    "bildAlt": "Alpaka und handgefilztes Alpaka im Schnee"
   },
-  /* 19 */ {
-    art: "Aus der Galerie",
-    titel: "In vollem Lauf",
-    text: [
-      "Nicht jedes Filztier sitzt brav: Dieser Saluki-Windhund ist mitten in der Bewegung eingefangen – mit wehendem Fell an Ohren und Rute.",
-      "Haltung und Bewegung sind für den Charakter genauso wichtig wie das Gesicht."
+  {
+    "art": "Weihnachtlicher Türchenunsinn",
+    "titel": "Der kleine Filzkobold",
+    "text": [
+      "Eigentlich könnte ich vor Weihnachten ein bisschen Unterstützung gebrauchen.",
+      "Und kaum denke ich darüber nach, sitzt da schon wieder so ein kleiner Kobold in meiner Wolle.",
+      "Das Zepter hat er bereits übernommen.",
+      "Jetzt müsste er nur noch herausfinden, mit welchem Ende der Nadel man filzt. :-)"
     ],
-    bild: "ic4e3ccaf30760c1c/version/1775820215/handgefilztes-saluki-windhund-tierportrait-laufend-aus-wolle-realistisch.jpg",
-    bildAlt: "Handgefilzter schwarz-weißer Saluki im Lauf",
-    link: { url: "/gallerie-i/", label: "Zur Galerie I" }
+    "bild": "bilder/tuerchen-19.jpg",
+    "bildAlt": "Handgefilzte Maus mit Werkzeug in einem Karton voller Filzwolle"
   },
-  /* 20 */ {
-    art: "Herzensangelegenheit",
-    titel: "Für Maruscha",
-    text: [
-      "Diese Seite trägt den Namen meines Seelenhundes Maruscha. Ich habe sie ihr gewidmet – aus tiefer Verbundenheit und um ihr ein ehrenvolles Andenken zu bewahren.",
-      "Jedes Tier, das ich filze, ist für mich ein Stück meines geliebten Mupfelchens, das in meinem Herzen weiterlebt."
+  {
+    "art": "4. Advent",
+    "titel": "Schon alles verpackt?",
+    "text": [
+      "Bald ist es so weit. Habt ihr eure Geschenke schon alle verpackt?",
+      "Nein, ich bin nicht echt, ich bin aus Wolle.",
+      "Nur deshalb bin ich auch ein tolles Weihnachtsgeschenk. Doch für dieses Jahr ist es schon viel zu spät.",
+      "Meine Filzerin hat nämlich beschlossen, dass sie jetzt nur noch in Plätzchen sticht. Und zwar mit der Gabel. :-)",
+      "Einen schönen vierten Advent wünsche ich euch!"
     ],
-    link: { url: "/über-mich/", label: "Über mich" }
+    "bild": "bilder/tuerchen-20.jpg",
+    "bildAlt": "Handgefilzter Hund im Packpapier"
   },
-  /* 21 */ {
-    art: "Eigentlich …",
-    titel: "Und dann wäre da noch Cleo …",
-    text: [
+  {
+    "art": "Eigentlich …",
+    "titel": "Und dann wäre da noch Cleo …",
+    "text": [
       "Damit nicht der Eindruck entsteht, dass bei uns nur zwei Hunde für Unterhaltung sorgen: Da ist ja auch noch Cleo, unsere Katze.",
       "Sie ist dieses Jahr 19 geworden. Das weiß sie aber nicht."
     ],
-    bild: "i72a1b20d077572b8/version/1792953234/und-dann-w%C3%A4re-da-eigentlich-noch-cleo.jpg",
-    bildAlt: "Getigerte Katze Cleo vor ihrem Futternapf",
-    link: { url: "/2026/10/25/und-dann-w%C3%A4re-da-eigentlich-noch-cleo/", label: "Cleos Geschichte" }
+    "bild": "i72a1b20d077572b8/version/1792953234/und-dann-w%C3%A4re-da-eigentlich-noch-cleo.jpg",
+    "bildAlt": "Getigerte Katze Cleo vor ihrem Futternapf",
+    "link": {
+      "url": "/2026/10/25/und-dann-w%C3%A4re-da-eigentlich-noch-cleo/",
+      "label": "Cleos Geschichte"
+    }
   },
-  /* 22 */ {
-    art: "Aus der Galerie",
-    titel: "Getupft, gestreift, gefleckt",
-    text: [
-      "Besondere Zeichnungen, langes Fell oder feine Farbverläufe bedeuten beim Filzen viel zusätzliche Arbeit – jeder Tupfen will an seinem Platz sein.",
-      "Während der gesamten Arbeit vergleiche ich mein Filztier immer wieder mit den Fotos und korrigiere, bis Proportionen und Ausdruck stimmen."
+  {
+    "art": "Filztier",
+    "titel": "Weihnachtsruhe",
+    "text": [
+      "Noch zweimal schlafen, dann ist Weihnachten.",
+      "Die Menschen rennen durch die Geschäfte, suchen die letzten Geschenke und machen sich Gedanken darüber, was sie alles noch erledigen müssen.",
+      "Ich mache mir gerade nur einen einzigen Gedanken.",
+      "Ob ich wohl um diesen See herumlaufen kann, ohne dass mich jemand zurückruft? :-)"
     ],
-    bild: "ib239aa75e12fb5e3/version/1775812612/handgefilztes-katzenportrait-realistisch-aus-wolle-tierportrait-handgefertigt.jpg",
-    bildAlt: "Handgefilzte gefleckte Wildkatze auf einem Baumstamm",
-    link: { url: "/gallerie-i/", label: "Zur Galerie I" }
+    "bild": "bilder/tuerchen-22.jpg",
+    "bildAlt": "Handgefilzter Hund am verschneiten Seeufer"
   },
-  /* 23 */ {
-    art: "Geschenkidee",
-    titel: "Eine Erinnerung, die bleibt",
-    text: [
-      "Ein handgefilztes Portrait Ihres Tieres – als Geschenk zum Geburtstag, zu Weihnachten oder als bleibende Erinnerung an einen geliebten Begleiter.",
-      "Ca. 15–20 cm groß, nach Ihren Fotos gefertigt, ab 300 €. Schicken Sie mir einfach ein paar Bilder – ich mache Ihnen gerne ein unverbindliches Angebot."
+  {
+    "art": "Filztier",
+    "titel": "Die Frisur sitzt noch nicht",
+    "text": [
+      "Jetzt wird es aber richtig hektisch. Morgen ist schon Weihnachten!",
+      "Ich glaube, ich muss noch ganz schnell zum Friseur. Mir stehen ja sämtliche Haare zu Berge.",
+      "Irgendetwas hat mit der Lichterkette nicht gestimmt. :-)"
     ],
-    bild: "id927ae72d3599b20/version/1775819975/handgefilzte-hunde-gruppe-mehrere-hundeportraits-aus-wolle-realistisch.jpg",
-    bildAlt: "Drei handgefilzte schwarz-weiße Hunde auf einem Holzboden",
-    link: { url: "/kontakt/", label: "Unverbindlich anfragen" }
+    "bild": "bilder/tuerchen-23.jpg",
+    "bildAlt": "Handgefilzter braun-weißer Hund mit zerzaustem Fell"
   },
-  /* 24 */ {
-    art: "Heiligabend",
-    titel: "Frohe Weihnachten!",
-    text: [
-      "Danke, dass Sie mich durch den Advent begleitet haben.",
-      "Ich wünsche Ihnen und Ihren Vierbeinern ein warmes, friedliches Weihnachtsfest und einen guten Start ins neue Jahr. Herzliche Grüße, Angelika"
+  {
+    "art": "Heiligabend",
+    "titel": "Schöne Fest- und Fresstage",
+    "text": [
+      "Huuuuuunger!",
+      "Und der kugelrunde Windhund muss tatsächlich noch auf sein Weihnachtsessen warten.",
+      "Da schreit das Frauchen aus der Küche: „Brust oder Keule?“",
+      "„Eigentlich beides bitte und vielleicht noch ein Tröpflein Sauce. Bitte nicht zu viel, nur randvoll.“ :-)",
+      "In diesem Sinne wünsche ich euch und euren Vierbeinern schöne Fest- und Fresstage.",
+      "Frohe Weihnachten wünschen euch",
+      "Angelika und die gesamte Anstalt für verhaltensauffällige Filztiere. :-)"
     ],
-    bild: "i4f0d1d596f896a1f/version/1775826359/handgefilztes-whippet-hundeportrait-aus-wolle-im-schnee-am-see.jpg",
-    bildAlt: "Handgefilzter Whippet im Schnee an einem See",
-    link: { url: "/", label: "Zur Startseite" }
+    "bild": "bilder/tuerchen-24.JPG",
+    "bildAlt": "Kugelrunder gefilzter Windhund mit erhobener Pfote vor seinem leeren Napf"
   }
 ];
